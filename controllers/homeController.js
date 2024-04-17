@@ -4,7 +4,22 @@
 /**
  * Listing 12.5 (p. 178)
  * 홈 컨트롤러로의 라우팅
- */
+ */exports.respondWithName = (req, res) => {
+    let paramsName = req.params.myName;
+    res.render('index', {
+        name: paramsName,
+        people:{
+            fisrt:{
+                name: "Aaron",
+                city: "kor"
+            },
+            second:{
+                name: "mery",
+                city: "Los"
+            }
+        }
+    });
+};
 
 
 /**
