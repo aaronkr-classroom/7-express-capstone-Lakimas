@@ -3,23 +3,22 @@
 "use strict";
 
 // 앱 설정
-const port = 3001;
+const port = 3002;
 const express = require('express');
-const layout = require('express-ejs-layouts'),
-homeController = require('./controllers/homeController'),
-errorController = require('./controllers/errorController'),
-app = express();
-
+const layout = require('express-ejs-layouts');
+const homeController = require('./controllers/homeController');
+const errorController = require('./controllers/errorController');
+const app = express();
 
 /**
  * Listing 12.7 (p. 179)
  * ejs 레이아웃 렌더링
  */
-app.set("view engine","ejs");
-app.set("port",process.env.PORT || port),
+app.set('view engine','ejs');
+app.set("port",process.env.PORT || port);
 
+app.use(layout);
 app.use(express.static("public"));//정적파일 디렉토리
-app.use(layout); //
 
 app.get("/", (req, res) => {
     res.send("Welecome to confetti cuisine!");
@@ -54,6 +53,5 @@ app.listen(app.get("port"),() =>{
  * Listing 12.12 (p. 184)
  * 에러 처리 라우트 
  */
-app.use(errorController.logErrors);
 app.use(errorController.pageNotFoundError);
 app.use(errorController.internalServerError);
