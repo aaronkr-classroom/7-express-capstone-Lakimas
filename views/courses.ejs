@@ -1,4 +1,5 @@
 <!-- @TODO: courses.ejs -->
+
     <main class="">
       <div id="coursesCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -110,6 +111,9 @@
       <!-- @TODO: Loop through & display dynamic content -->
       <div class="container">
         <h1>Our Courses</h1>
-        <!-- <% ... %> -->
+        <% offeredCourses.forEach(course => { %>
+          <h5><%= course.title %></h5>
+          <p>$<%= course.cost %></p>
+        <% }); %>
       </div>
     </main>
