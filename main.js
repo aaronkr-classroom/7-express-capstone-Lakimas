@@ -3,19 +3,18 @@
 "use strict";
 
 // 앱 설정
-const port = 3003;
-const express = require('express');
-const layout = require('express-ejs-layouts');
-const homeController = require('./controllers/homeController');
-const errorController = require('./controllers/errorController');
-const app = express();
+const express = require('express'),
+    layout = require('express-ejs-layouts'),
+    homeController = require('./controllers/homeController'),
+    errorController = require('./controllers/errorController'),
+    app = express();
 
 /**
  * Listing 12.7 (p. 179)
  * ejs 레이아웃 렌더링
  */
 app.set('view engine','ejs');
-app.set("port",process.env.PORT || port);
+app.set("port",process.env.PORT || 3000);
 
 app.use(layout);
 app.use(express.static("public"));//정적파일 디렉토리
@@ -38,9 +37,9 @@ app.use(express.json());
  * 각 페이지 및 요청 타입을 위한 라우트 추가
  */
 app.get("/", homeController.showHome);
-app.get("/courses", homeController.showCourses);
+app.get("/courses", homeController.showRenderedCourses);
 app.get("/contact", homeController.showSignUp);
-app.post("/contact", homeController.postedContactForm);
+app.post("/contact", homeController.postedSignUp);
 
 /**
  * Listing 12.12 (p. 184)

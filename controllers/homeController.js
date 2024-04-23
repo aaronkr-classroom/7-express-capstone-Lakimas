@@ -12,7 +12,7 @@ exports.showCourses = (req, res) => {
 exports.showSignUp = (req, res) => {
     res.render("contact");
 }
-exports.postedContactForm = (req, res) => {
+exports.postedSignUp = (req, res) => {
     res.render("thanks");
 }
 exports.showHome = (req, res) => {
