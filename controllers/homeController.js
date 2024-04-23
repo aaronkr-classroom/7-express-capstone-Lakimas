@@ -15,7 +15,9 @@ exports.showSignUp = (req, res) => {
 exports.postedContactForm = (req, res) => {
     res.render("thanks");
 }
-
+exports.showHome = (req, res) => {
+    res.render("index");
+}
 
 /**
  * Listing 12.9 (p. 182)
@@ -39,6 +41,8 @@ var courses = [
     }
 ];
 
-exports.showCourses = (req, res) => {
-    res.render("courses", {offeredCourses: courses});
+exports.showRenderedCourses = (req, res) => {
+    res.render("courses", {
+        offeredCourses: courses // 코스 배열 데이터를 뷰로 전달
+    });
 };

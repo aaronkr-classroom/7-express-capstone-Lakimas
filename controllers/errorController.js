@@ -6,7 +6,7 @@ const httpStatus = require("http-status-codes");
 /**
  * Listing 11.2 (p. 168)
  */
-exports.logErrors = (err, req, rea, next) => {
+exports.logErrors = (err, req, res, next) => {
     console.error(err.stack);
     next(err);
 };
@@ -29,7 +29,7 @@ exports.pageNotFoundError = (req, res) =>{
 exports.internalServerError = (err, req, res, next) =>{
     let errorCode = httpStatus.INTERNAL_SERVER_ERROR; // 500
     console.error('ERROR occurred: ${err.stack}');
-    res.status(`ERROR occurred: ${err.stack}`);
+    res.status(errorCode);
     res.send(`${errorCode} | The resource does not exist!`);
     //res.sendFile(`./public/${errorCode}.html`, {
     //    root: './'

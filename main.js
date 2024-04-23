@@ -3,7 +3,7 @@
 "use strict";
 
 // 앱 설정
-const port = 3002;
+const port = 3003;
 const express = require('express');
 const layout = require('express-ejs-layouts');
 const homeController = require('./controllers/homeController');
@@ -20,9 +20,6 @@ app.set("port",process.env.PORT || port);
 app.use(layout);
 app.use(express.static("public"));//정적파일 디렉토리
 
-app.get("/", (req, res) => {
-    res.send("Welecome to confetti cuisine!");
-});
 
 // app.get(); = GET method
 // app.post(); = POST method
@@ -40,14 +37,10 @@ app.use(express.json());
  * Listing 12.6 (p. 178)
  * 각 페이지 및 요청 타입을 위한 라우트 추가
  */
+app.get("/", homeController.showHome);
 app.get("/courses", homeController.showCourses);
 app.get("/contact", homeController.showSignUp);
 app.post("/contact", homeController.postedContactForm);
-
-// 3000번 포트로 리스닝 설정
-app.listen(app.get("port"),() =>{
-    console.log(`Sever at http://localhost:${app.get("port")}`)
-});
 
 /**
  * Listing 12.12 (p. 184)
@@ -55,3 +48,8 @@ app.listen(app.get("port"),() =>{
  */
 app.use(errorController.pageNotFoundError);
 app.use(errorController.internalServerError);
+
+// 3000번 포트로 리스닝 설정
+app.listen(app.get("port"),() =>{
+    console.log(`Sever at http://localhost:${app.get("port")}`)
+});
